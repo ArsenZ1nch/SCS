@@ -102,7 +102,5 @@ async def unloadCogs(*args):
             print(colored(f'Failed to unload {file}: {E}', 'red'))
     return print('Finished')
 
-
-if __name__ == '__main__':
-    bot.run('ODk2NzI3MTQ2MjQyOTIwNDk4.YWLUPA.Z4Cq4aOhjBC2RMoh-EWzYajhbf4')
+bot.run('ODk2NzI3MTQ2MjQyOTIwNDk4.YWLUPA.Z4Cq4aOhjBC2RMoh-EWzYajhbf4')
     # bot.run('')
