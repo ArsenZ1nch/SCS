@@ -13,29 +13,29 @@ console = Console(bot)
 async def on_ready():
     guild = await bot.fetch_guild(896724049286295582)
     members = await guild.fetch_members().flatten()
-    # print('Starting to check the databases')
-    #
-    # with open('databases/social_credit.json', 'r+') as f:
-    #     jsonObj = json.load(f)
-    #     for member in members:
-    #         if str(member.id) not in jsonObj.keys():
-    #             print(colored(f'New member detected: {member}', 'yellow'))
-    #             jsonObj[str(member.id)] = 1000
-    #     f.seek(0)
-    #     json.dump(jsonObj, f, indent=4)
-    #
-    # print(colored('Databases synced up and ready to go', 'green'))
-    #
-    # for file in os.listdir('Cogs'):
-    #     if not file.endswith('.py'):
-    #         continue
-    #
-    #     try:
-    #         bot.load_extension(f'Cogs.{file[:-3]}')
-    #         print(colored(f'Loaded {file}', 'green'))
-    #     except Exception as E:
-    #         print(colored(f'Failed to Load {file}: {E}', 'red'))
-    # print('Finished')
+    print('Starting to check the databases')
+    
+    with open('databases/social_credit.json', 'r+') as f:
+        jsonObj = json.load(f)
+        for member in members:
+            if str(member.id) not in jsonObj.keys():
+                print(colored(f'New member detected: {member}', 'yellow'))
+                jsonObj[str(member.id)] = 1000
+        f.seek(0)
+        json.dump(jsonObj, f, indent=4)
+    
+    print(colored('Databases synced up and ready to go', 'green'))
+    
+    for file in os.listdir('Cogs'):
+        if not file.endswith('.py'):
+            continue
+    
+        try:
+            bot.load_extension(f'Cogs.{file[:-3]}')
+            print(colored(f'Loaded {file}', 'green'))
+        except Exception as E:
+            print(colored(f'Failed to Load {file}: {E}', 'red'))
+    print('Finished')
 
     print('Bot ready')
     console.start()
@@ -104,5 +104,5 @@ async def unloadCogs(*args):
 
 
 if __name__ == '__main__':
-    bot.run(input('Enter the token: '))
+    bot.run('ODk2NzI3MTQ2MjQyOTIwNDk4.YWLUPA.Z4Cq4aOhjBC2RMoh-EWzYajhbf4')
     # bot.run('')
