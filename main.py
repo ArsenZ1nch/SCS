@@ -11,7 +11,7 @@ console = Console(bot)
 
 @bot.event
 async def on_ready():
-    guild = await bot.fetch_guild(896724049286295582)
+    guild = await bot.fetch_guild(779290119738884108)
     members = await guild.fetch_members().flatten()
     print('Starting to check the databases')
     
