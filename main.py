@@ -38,7 +38,7 @@ async def on_ready():
     print('Finished')
 
     print('Bot ready')
-    console.start()
+#     console.start()
 
 
 @bot.event
