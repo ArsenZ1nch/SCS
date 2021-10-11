@@ -14,7 +14,7 @@ class ManCmds(commands.Cog):
 
     @commands.command()
     async def promote(self, ctx, usr: discord.Member, sc: int, *, reason=None):
-        if ctx.author.top_role < ctx.guild.get_role(763448121786368060):
+        if ctx.author.top_role < ctx.guild.get_role(779290119738884114):
             return await ctx.send('不')
 
         if ctx.author.top_role <= usr.top_role or sc == 0:
