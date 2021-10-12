@@ -48,7 +48,6 @@ class ManCmds(commands.Cog):
         embed.add_field(name=f'Amount of {"lost" if sc < 0 else "gained"} credit:', value=str(abs(sc)))
         if reason:
             embed.add_field(name='Reason:', value=reason)
-        embed.add_field(name='Current grade:', value='unknown', inline=False)
         embed.set_footer(text='你太无耻了！' if sc < 0 else '做得太好了！')
         '''
         %%%
