@@ -17,11 +17,11 @@ class ManCmds(commands.Cog):
 
     @commands.command()
     async def promote(self, ctx, usr: discord.Member, sc: int, *, reason=None):
-        if ctx.author.top_role < ctx.guild.get_role(896458600166330368):      # checks if author is A+ or higher
+        if ctx.author.top_role < ctx.guild.get_role(896458600166330368) or sc == 0:      # checks if author is A+ or higher + if social credit is not 0
             return await ctx.send('不')
 
-        if ctx.author.top_role < usr.top_role or sc == 0:  # checks if author is higher in hierarchy than
-            return await ctx.send('不')  # the target + if social credit is not 0
+        if ctx.author.top_role <= usr.top_role and ctx.author != ctx.guild.owner:  # checks if author is higher in hierarchy than the target unless author is the owner
+            return await ctx.send('不')
 
         if reason:
             if len(reason) > 69:
