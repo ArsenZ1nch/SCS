@@ -82,7 +82,7 @@ class ManCmds(commands.Cog):
             epoch = str(int(time.time()))  # epoch is the key
             jsonObj[id].update({epoch: {
                 'Change': change[:-2],
-                'Change of social score': sc if sc > 0 else sc,
+                'Change of social score': sc,
                 'Author': ctx.author.id
             }}
             )
