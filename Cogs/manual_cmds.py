@@ -35,7 +35,7 @@ class ManCmds(commands.Cog):
         else:
             change = 'Demotion 🤬'
             rsn = f'`{reason}`' if reason else 'their atrocious anti-Chinese behaviour'
-            msg = f'{usr} just lost {sc} social credit for {rsn} 😡 😡'
+            msg = f'{usr} just lost {abs(sc)} social credit for {rsn} 😡 😡'
 
         '''
         Setting up the embed (2 more lines in the next big section)
