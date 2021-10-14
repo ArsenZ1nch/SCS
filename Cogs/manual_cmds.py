@@ -17,11 +17,11 @@ class ManCmds(commands.Cog):
 
     @commands.command()
     async def promote(self, ctx, usr: discord.Member, sc: int, *, reason=None):
-        if ctx.author.top_role < ctx.guild.get_role(896458600166330368):      # checks if author is A+ or higher
+        if ctx.author.top_role < ctx.guild.get_role(896458600166330368) or sc == 0:      # checks if author is A+ or higher + if social credit is not 0
             return await ctx.send('不')
 
-        if ctx.author.top_role < usr.top_role or sc == 0:  # checks if author is higher in hierarchy than
-            return await ctx.send('不')  # the target + if social credit is not 0
+        if ctx.author.top_role <= usr.top_role and ctx.author != ctx.guild.owner:  # checks if author is higher in hierarchy than the target unless author is the owner
+            return await ctx.send('不')
 
         if reason:
             if len(reason) > 69:
@@ -35,7 +35,7 @@ class ManCmds(commands.Cog):
         else:
             change = 'Demotion 🤬'
             rsn = f'`{reason}`' if reason else 'their atrocious anti-Chinese behaviour'
-            msg = f'{usr} just lost {sc} social credit for {rsn} 😡 😡'
+            msg = f'{usr} just lost {abs(sc)} social credit for {rsn} 😡 😡'
 
         '''
         Setting up the embed (2 more lines in the next big section)
@@ -48,7 +48,6 @@ class ManCmds(commands.Cog):
         embed.add_field(name=f'Amount of {"lost" if sc < 0 else "gained"} credit:', value=str(abs(sc)))
         if reason:
             embed.add_field(name='Reason:', value=reason)
-        embed.add_field(name='Current grade:', value='unknown', inline=False)
         embed.set_footer(text='你太无耻了！' if sc < 0 else '做得太好了！')
         '''
         %%%
@@ -83,7 +82,7 @@ class ManCmds(commands.Cog):
             epoch = str(int(time.time()))  # epoch is the key
             jsonObj[id].update({epoch: {
                 'Change': change[:-2],
-                'Change of social score': sc if sc > 0 else sc,
+                'Change of social score': sc,
                 'Author': ctx.author.id
             }}
             )

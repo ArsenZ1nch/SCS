@@ -5,7 +5,7 @@ import grading_system as gs
 from discord.ext.commands import Bot
 from termcolor import colored
 
-bot = Bot(command_prefix='$', intents=discord.Intents.all())
+bot = Bot(command_prefix='!', intents=discord.Intents.all())
 
 
 @bot.event
