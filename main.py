@@ -3,7 +3,6 @@ import json
 import discord
 import grading_system as gs
 from discord.ext.commands import Bot
-from termcolor import colored
 
 bot = Bot(command_prefix='!', intents=discord.Intents.all())
 
@@ -18,7 +17,7 @@ async def on_ready():
         jsonObj = json.load(f)
         for member in members:
             if str(member.id) not in jsonObj.keys() and not member.bot:
-                print(colored(f'[SC map]: New member detected: {member}', 'yellow'))
+                print(f'[SC map]: New member detected: {member}')
                 jsonObj[str(member.id)] = 1000
         f.seek(0)
         json.dump(jsonObj, f, indent=4)
@@ -31,21 +30,21 @@ async def on_ready():
         jsonObj = json.load(f)
         for member in members:
             if str(member.id) not in jsonObj.keys() and not member.bot:
-                print(colored(f'[Logs]: New member detected: {member}', 'yellow'))
+                print(f'[Logs]: New member detected: {member}')
                 jsonObj[str(member.id)] = {}
         f.seek(0)
         json.dump(jsonObj, f, indent=4)
 
-    print(colored('Databases synced up and ready to go', 'green'))
+    print('Databases synced up and ready to go')
 
     for file in os.listdir('Cogs'):     # loads the cogs
         if not file.endswith('.py'):
             continue
         try:
             bot.load_extension(f'Cogs.{file[:-3]}')
-            print(colored(f'Loaded {file}', 'green'))
+            print(f'Loaded {file}')
         except Exception as E:
-            print(colored(f'Failed to Load {file}: {E}', 'red'))
+            print(f'Failed to Load {file}: {E}')
     print('Finished loading cogs')
 
     print('Bot ready')
@@ -53,12 +52,9 @@ async def on_ready():
 
 @bot.event
 async def on_disconnect():
-    print(colored('Disconnected', 'red'))
-
-    @bot.event
-    async def on_connect():     # smart shit which doesn't work
-        print(colored('Reconnected', 'green'))
+    print('Disconnected')
 
 
 if __name__ == '__main__':
-    bot.run('ODk2NzI3MTQ2MjQyOTIwNDk4.YWLUPA.Z4Cq4aOhjBC2RMoh-EWzYajhbf4')
+    token = input('Enter the token: ')
+    bot.run(token)
